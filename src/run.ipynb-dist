@@ -1,0 +1,187 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from __PROJECT_NAME___apihandler import EZ_NAMESPACE, MODEL_ID, LOAD_BALANCER_ID, API_HANDLER, EXECUTABLE_JAR"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Tests locally the apihandler script\n",
+    "# (Require java installed on the notebook controller pod)\n",
+    "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Prepare \n",
+    "\n",
+    "Install Java 17 on the restserver following the steps\n",
+    "\n",
+    "- kubectl exec -it __MODEL_ID__-restserver-XXX-0 -n development -- bash\n",
+    "- yum -y update\n",
+    "- rpm --import https://yum.corretto.aws/corretto.key\n",
+    "- curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo\n",
+    "- yum install -y java-17-amazon-corretto-devel"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Run this box to retrieve the JWT token:\n",
+    "#  - look into the \"CalledProcessError: Command '['bash', '-c', 'kubectl -n development apply ...\"\n",
+    "#  - copy the token value between the params \"--token=\" and \"--server=\"\n",
+    "#  - paste it into the variable declared in the box below\n",
+    "#\n",
+    "from ezmllib.model import register\n",
+    "register(\n",
+    "    \"Test __MODEL_DESC__ Hacking\",\n",
+    "    EXECUTABLE_JAR, API_HANDLER, '1',\n",
+    "    model_description=\"Test __MODEL_DESC__ Hacking\"\n",
+    ")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# The output of this box contains useful informations\n",
+    "# - auth-token\n",
+    "# - external service port\n",
+    "# - ...\n",
+    "#\n",
+    "import subprocess\n",
+    "\n",
+    "token = '' # Copy the JWT here\n",
+    "\n",
+    "with open('stdout.txt','w') as fpOut, open('stderr.txt','w') as fpErr:\n",
+    "    status = subprocess.call([\n",
+    "        'kubectl', 'describe', 'service', LOAD_BALANCER_ID,\n",
+    "        '--namespace', EZ_NAMESPACE,\n",
+    "        '--server', 'https://kubernetes.default',\n",
+    "        '--certificate-authority', '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt',\n",
+    "        '--token', token\n",
+    "    ], stdout=fpOut, stderr=fpErr)\n",
+    "\n",
+    "print(f\"call status: {status}\")\n",
+    "\n",
+    "with open('stderr.txt') as fpErr:\n",
+    "    errors = fpErr.read()\n",
+    "    print(errors)\n",
+    "\n",
+    "with open('stdout.txt') as fpOut:\n",
+    "    out = fpOut.read()\n",
+    "    print(out)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# import os\n",
+    "# os.environ['http_proxy'] = \"\"\n",
+    "# os.environ['https_proxy'] = \"\"\n",
+    "\n",
+    "# import requests\n",
+    "# PORT = '10288'\n",
+    "# URL = f\"https://hpe-ere-gw-lb.seclab.local:{PORT}/{MODEL_ID}/1/predict\"\n",
+    "# AUTH_TOKEN = ''\n",
+    "\n",
+    "# report = requests.post(url = URL, headers={\"X-Auth-Token\": AUTH_TOKEN}, data = {\n",
+    "#     \"use_scoring\": True,\n",
+    "#     \"scoring_args\": {\n",
+    "#         \"endpoint\": \"http://hapi.wilsley.xyz\",\n",
+    "#         \"patient-identifier\": \"user12@puglia.gatekeeper.com\",\n",
+    "#         \"start-date\": \"2022-01-01\",\n",
+    "#         \"end-date\": \"2022-12-31\"\n",
+    "#     }\n",
+    "# }, verify = False)\n",
+    "\n",
+    "# report"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Performes a request that tests public endpoint\n",
+    "#\n",
+    "import json\n",
+    "import subprocess\n",
+    "\n",
+    "PORT = '' # Copy load-balancer port (second line)\n",
+    "AUTH_TOKEN = '' # Copy the auth token\n",
+    "\n",
+    "# Fill the following variable before run\n",
+    "post_body = {\n",
+    "  \"use_scoring\": \"true\",\n",
+    "  \"scoring_args\": {\n",
+    "    \"endpoint\": \"\",           # HERE\n",
+    "    \"patient_identifier\": \"\", # HERE\n",
+    "    \"start_date\": \"\",         # HERE\n",
+    "    \"end_date\": \"\"            # HERE\n",
+    "  }\n",
+    "}\n",
+    "\n",
+    "with open('stdout.txt','w') as fpOut, open('stderr.txt','w') as fpErr:\n",
+    "  URL = f\"https://hpe-ere-gw-lb.seclab.local:{PORT}/{MODEL_ID}/1/predict\"\n",
+    "  status = subprocess.call([\n",
+    "    'curl', '-k', '--location', '--request', 'POST', URL,\n",
+    "      '--header', 'Content-Type: application/json',\n",
+    "      '--header', f\"X-Auth-Token: {AUTH_TOKEN}\",\n",
+    "      '--data-raw', json.dumps(post_body)\n",
+    "  ], stdout=fpOut, stderr=fpErr)\n",
+    "\n",
+    "print(f\"call status: {status}\")\n",
+    "\n",
+    "with open('stderr.txt') as fpErr:\n",
+    "  errors = fpErr.read()\n",
+    "  print(errors)\n",
+    "\n",
+    "with open('stdout.txt') as fpOut:\n",
+    "  out = fpOut.read()\n",
+    "  print(out)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.5"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
