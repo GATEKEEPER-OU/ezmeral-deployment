@@ -47,21 +47,17 @@ Once completed, we must remember to install java virtual machine into the `rests
 
 ## Post-installation
 
-Before execute the `run` notebook, we must collect some
-
-
-
-the pod names from the HPE Ezmeral [Dashbord](https://hpe-ere-controller.seclab.local/bdswebui/k8stenant/dashboard) to install java virtual machine into the `restserver`.
-
-Take notes from "All Pods (aggregated)" combodox. We looking for something like
-- __MODEL_ID__-model-restserver-XXXXX-0
+Before execute the `run` notebook, we must collect some information.
+We can find the pod names from the HPE Ezmeral [Dashbord](https://hpe-ere-controller.seclab.local/bdswebui/k8stenant/dashboard).
+We looking for `restserver` and `loadbalancer` names. Take notes from "All Pods (aggregated)" combodox. They will be something like
+- __MODEL_ID__-restserver-XXXXX-0
 - __MODEL_ID__-loadbalancer-YYYYY-0
 
-Once completed the previous step, open an online terminal and follow the next procedure:
+Once completed the previous step, we have to install Java Virtual Machine into the `restserver`. So, open an online terminal and follow the next procedure:
 ```
 kubectl exec -it __MODEL_ID__-model-restserver-XXXXX-0 -n development -- bash
 ```
-it will open a terminal into the pod `restserver`, then run to install the JVM
+It will open a terminal into the pod `restserver`, then run to install the JVM
 ```
 $ yum -y update
 $ rpm --import https://yum.corretto.aws/corretto.key
