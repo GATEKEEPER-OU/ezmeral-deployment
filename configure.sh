@@ -69,6 +69,15 @@ sed -i'.bak' "s#__MAVEN_REPOSITORY__#${maven_repository}#" $tmp_file
 mv $tmp_file $WORKING_DIR/$download_filename
 
 ################################################################################
+# test.ipynb                                                                   #
+################################################################################
+test_filename="test.ipynb"
+tmp_file="$SRC_DIR/${test_filename}-tmp"
+cp "$SRC_DIR/${test_filename}-dist" $tmp_file
+sed -i'.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
+mv $tmp_file $WORKING_DIR/$test_filename
+
+################################################################################
 # Generate apihandler                                                          #
 ################################################################################
 apihandler_filename="apihandler.py"

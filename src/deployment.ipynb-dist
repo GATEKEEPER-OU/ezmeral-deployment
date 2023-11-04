@@ -17,9 +17,9 @@
    "source": [
     "from ezmllib.model import register\n",
     "register(\n",
-    "    MODEL_ID,\n",
-    "    EXECUTABLE_JAR, API_HANDLER, '1',\n",
-    "    model_description=MODEL_DESC\n",
+    "  MODEL_ID,\n",
+    "  EXECUTABLE_JAR, API_HANDLER, '1',\n",
+    "  model_description=MODEL_DESC\n",
     ")"
    ]
   },

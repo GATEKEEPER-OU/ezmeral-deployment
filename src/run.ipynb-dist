@@ -1,26 +1,6 @@
 {
  "cells": [
   {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "from __PROJECT_NAME___apihandler import EZ_NAMESPACE, MODEL_ID, LOAD_BALANCER_ID, API_HANDLER, EXECUTABLE_JAR"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# Tests locally the apihandler script\n",
-    "# (Require java installed on the notebook controller pod)\n",
-    "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
-   ]
-  },
-  {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
@@ -33,6 +13,15 @@
     "- rpm --import https://yum.corretto.aws/corretto.key\n",
     "- curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo\n",
     "- yum install -y java-17-amazon-corretto-devel"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from __PROJECT_NAME___apihandler import EZ_NAMESPACE, MODEL_ID, API_HANDLER, EXECUTABLE_JAR"
    ]
   },
   {
@@ -68,6 +57,7 @@
     "import subprocess\n",
     "\n",
     "token = '' # Copy the JWT here\n",
+    "LOAD_BALANCER_ID = '' # Copy the loadbalancer ID here\n",
     "\n",
     "with open('stdout.txt','w') as fpOut, open('stderr.txt','w') as fpErr:\n",
     "    status = subprocess.call([\n",

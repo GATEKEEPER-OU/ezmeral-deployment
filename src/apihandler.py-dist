@@ -18,7 +18,6 @@ EZ_NAMESPACE = '__EZ_NAMESPACE__'
 MODEL_ID     = '__MODEL_ID__'
 MODEL_DESC   = '__MODEL_DESC__'
 DEPLOYM_DESC = '__DEPLOYM_DESC__'
-LOAD_BALANCER_ID = '' # Retrieve it from HPE Ezmeral Dashboard - open the combobox "All Pods (aggregated)"
 
 PROJ_DIR   = '/bd-fs-mnt/project_repo'
 CODE_DIR   = f"{PROJ_DIR}/code/{PROJECT_NAME}"
