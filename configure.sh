@@ -63,9 +63,9 @@ done
 download_filename="download-deps.sh"
 tmp_file="$SRC_DIR/${download_filename}-tmp"
 cp "$SRC_DIR/${download_filename}-dist" $tmp_file
-sed -i '.bak' "s#__JAR_VERS__#${jar_vers}#" $tmp_file
-sed -i '.bak' "s#__JAR_NAME__#${jar_name}#" $tmp_file
-sed -i '.bak' "s#__MAVEN_REPOSITORY__#${maven_repository}#" $tmp_file
+sed -i'.bak' "s#__JAR_VERS__#${jar_vers}#" $tmp_file
+sed -i'.bak' "s#__JAR_NAME__#${jar_name}#" $tmp_file
+sed -i'.bak' "s#__MAVEN_REPOSITORY__#${maven_repository}#" $tmp_file
 mv $tmp_file $WORKING_DIR/$download_filename
 
 ################################################################################
@@ -74,14 +74,14 @@ mv $tmp_file $WORKING_DIR/$download_filename
 apihandler_filename="apihandler.py"
 tmp_file="$SRC_DIR/${apihandler_filename}-tmp"
 cp "$SRC_DIR/${apihandler_filename}-dist" $tmp_file
-sed -i '.bak' "s#__JAR_VERS__#${jar_vers}#" $tmp_file
-sed -i '.bak' "s#__JAR_NAME__#${jar_name}#" $tmp_file
-sed -i '.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
-sed -i '.bak' "s#__EZ_NAMESPACE__#${ez_namespace}#" $tmp_file
-sed -i '.bak' "s#__MODEL_ID__#${model_id}#" $tmp_file
-sed -i '.bak' "s#__MODEL_DESC__#${model_desc}#" $tmp_file
-sed -i '.bak' "s#__DEPLOYM_DESC__#${deploym_desc}#" $tmp_file
-sed -i '.bak' "s#__MARKER__#${marker}#" $tmp_file
+sed -i'.bak' "s#__JAR_VERS__#${jar_vers}#" $tmp_file
+sed -i'.bak' "s#__JAR_NAME__#${jar_name}#" $tmp_file
+sed -i'.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
+sed -i'.bak' "s#__EZ_NAMESPACE__#${ez_namespace}#" $tmp_file
+sed -i'.bak' "s#__MODEL_ID__#${model_id}#" $tmp_file
+sed -i'.bak' "s#__MODEL_DESC__#${model_desc}#" $tmp_file
+sed -i'.bak' "s#__DEPLOYM_DESC__#${deploym_desc}#" $tmp_file
+sed -i'.bak' "s#__MARKER__#${marker}#" $tmp_file
 mv $tmp_file "$WORKING_DIR/${project_name}_${apihandler_filename}"
 
 ################################################################################
@@ -90,7 +90,7 @@ mv $tmp_file "$WORKING_DIR/${project_name}_${apihandler_filename}"
 deployment_filename="deployment.ipynb"
 tmp_file="$SRC_DIR/${deployment_filename}-tmp"
 cp "$SRC_DIR/${deployment_filename}-dist" $tmp_file
-sed -i '.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
+sed -i'.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
 mv $tmp_file $WORKING_DIR/$deployment_filename
 
 ################################################################################
@@ -99,9 +99,9 @@ mv $tmp_file $WORKING_DIR/$deployment_filename
 run_filename="run.ipynb"
 tmp_file="$SRC_DIR/${run_filename}-tmp"
 cp "$SRC_DIR/${run_filename}-dist" $tmp_file
-sed -i '.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
-sed -i '.bak' "s#__MODEL_ID__#${model_id}#" $tmp_file
-sed -i '.bak' "s#__MODEL_DESC__#${model_desc}#" $tmp_file
+sed -i'.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
+sed -i'.bak' "s#__MODEL_ID__#${model_id}#" $tmp_file
+sed -i'.bak' "s#__MODEL_DESC__#${model_desc}#" $tmp_file
 mv $tmp_file $WORKING_DIR/$run_filename
 
 ################################################################################
