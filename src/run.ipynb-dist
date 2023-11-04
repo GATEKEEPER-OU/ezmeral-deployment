@@ -1,21 +1,6 @@
 {
  "cells": [
   {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## Prepare \n",
-    "\n",
-    "Install Java 17 on the restserver following the steps\n",
-    "\n",
-    "- kubectl exec -it __MODEL_ID__-restserver-XXX-0 -n development -- bash\n",
-    "- yum -y update\n",
-    "- rpm --import https://yum.corretto.aws/corretto.key\n",
-    "- curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo\n",
-    "- yum install -y java-17-amazon-corretto-devel"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
    "metadata": {},
@@ -30,7 +15,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Run this box to retrieve the JWT token:\n",
+    "# Run this box to retrieve the JWT token (neverming, if it will fail):\n",
     "#  - look into the \"CalledProcessError: Command '['bash', '-c', 'kubectl -n development apply ...\"\n",
     "#  - copy the token value between the params \"--token=\" and \"--server=\"\n",
     "#  - paste it into the variable declared in the box below\n",
@@ -56,8 +41,8 @@
     "#\n",
     "import subprocess\n",
     "\n",
-    "token = '' # Copy the JWT here\n",
     "LOAD_BALANCER_ID = '' # Copy the loadbalancer ID here\n",
+    "jwt_token = '' # Copy the JWT here\n",
     "\n",
     "with open('stdout.txt','w') as fpOut, open('stderr.txt','w') as fpErr:\n",
     "    status = subprocess.call([\n",
@@ -65,7 +50,7 @@
     "        '--namespace', EZ_NAMESPACE,\n",
     "        '--server', 'https://kubernetes.default',\n",
     "        '--certificate-authority', '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt',\n",
-    "        '--token', token\n",
+    "        '--token', jwt_token\n",
     "    ], stdout=fpOut, stderr=fpErr)\n",
     "\n",
     "print(f\"call status: {status}\")\n",
@@ -77,34 +62,6 @@
     "with open('stdout.txt') as fpOut:\n",
     "    out = fpOut.read()\n",
     "    print(out)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "# import os\n",
-    "# os.environ['http_proxy'] = \"\"\n",
-    "# os.environ['https_proxy'] = \"\"\n",
-    "\n",
-    "# import requests\n",
-    "# PORT = '10288'\n",
-    "# URL = f\"https://hpe-ere-gw-lb.seclab.local:{PORT}/{MODEL_ID}/1/predict\"\n",
-    "# AUTH_TOKEN = ''\n",
-    "\n",
-    "# report = requests.post(url = URL, headers={\"X-Auth-Token\": AUTH_TOKEN}, data = {\n",
-    "#     \"use_scoring\": True,\n",
-    "#     \"scoring_args\": {\n",
-    "#         \"endpoint\": \"http://hapi.wilsley.xyz\",\n",
-    "#         \"patient-identifier\": \"user12@puglia.gatekeeper.com\",\n",
-    "#         \"start-date\": \"2022-01-01\",\n",
-    "#         \"end-date\": \"2022-12-31\"\n",
-    "#     }\n",
-    "# }, verify = False)\n",
-    "\n",
-    "# report"
    ]
   },
   {
