@@ -259,10 +259,12 @@ $RECYCLE.BIN/
 #
 # Customs
 _*
-*_apihandler.py
 download-deps.sh
 deployment.ipynb
+test.ipynb
 run.ipynb
+*_apihandler.py
+*.jar
 
 stdout.txt
 stderr.txt
