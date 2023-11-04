@@ -4,12 +4,10 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "## Prepare \n",
+    "### Tests locally the apihandler script \n",
     "\n",
-    "Install Java 17 on the restserver following the steps\n",
-    "\n",
-    "- curl -LO https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.tar.gz\n",
-    "- ..."
+    "Requires java installed on the notebook controller.  \n",
+    "Follow the steps described on README.md in the relative section."
    ]
   },
   {
@@ -18,8 +16,6 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Tests locally the apihandler script\n",
-    "# (Require java installed on the notebook controller pod)\n",
     "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
    ]
   }
