@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+export jar_vers="0.0.3"
+export jar_name="mobility-progress"
+export maven_repository="http://gatekeeper.wilsley.xyz/maven/ai-models"
+
+export project_name="mobilityprogress" # avoid dashed
+export ez_namespace="development"
+export model_id="mobility-progress-model"
+export model_desc="Mobility Progress Model"
+export deploym_desc="Mobility Progress Model Cluster"
+export marker="MobilityProgressBundle"
