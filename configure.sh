@@ -58,15 +58,23 @@ while :; do
 done
 
 ################################################################################
-# Generate download-deps.sh                                                    #
+# Generate get-jdk.sh                                                    #
 ################################################################################
-download_filename="download-deps.sh"
-tmp_file="$SRC_DIR/${download_filename}-tmp"
-cp "$SRC_DIR/${download_filename}-dist" $tmp_file
+jdk_filename="get-jdk.sh"
+tmp_file="$SRC_DIR/${jdk_filename}-tmp"
+cp "$SRC_DIR/${jdk_filename}-dist" $tmp_file
+mv $tmp_file $WORKING_DIR/$jdk_filename
+
+################################################################################
+# Generate get-dependences.sh                                                    #
+################################################################################
+dependences_filename="get-dependences.sh"
+tmp_file="$SRC_DIR/${dependences_filename}-tmp"
+cp "$SRC_DIR/${dependences_filename}-dist" $tmp_file
 sed -i'.bak' "s#__JAR_VERS__#${jar_vers}#" $tmp_file
 sed -i'.bak' "s#__JAR_NAME__#${jar_name}#" $tmp_file
 sed -i'.bak' "s#__MAVEN_REPOSITORY__#${maven_repository}#" $tmp_file
-mv $tmp_file $WORKING_DIR/$download_filename
+mv $tmp_file $WORKING_DIR/$dependences_filename
 
 ################################################################################
 # test.ipynb                                                                   #

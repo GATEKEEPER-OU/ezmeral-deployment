@@ -259,7 +259,8 @@ $RECYCLE.BIN/
 #
 # Customs
 _*
-download-deps.sh
+get-jdk.sh
+get-dependences.sh
 deployment.ipynb
 test.ipynb
 run.ipynb
