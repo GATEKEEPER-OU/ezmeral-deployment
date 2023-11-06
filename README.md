@@ -31,14 +31,9 @@ Download the dependency Jar running the command below:
 sh download-deps.sh
 ```
 
-It might be necessary to install the Java Virtual Machine to test locally the apihandler. In that case exec the commands below:
-```
-$ mkdir -p ~/.local/share/jvm && curl -L https://corretto.aws/downloads/latest/amazon-corretto-17-x64-linux-jdk.tar.gz | tar -xz -C ~/.local/share/jvm
+Open the `test` notebook from the online JupiterLab platform offered by HPE Ezmeral and execute all boxes.
 
-... TODO ask to Chiara
-```
-
-Open the `test` notebook from the online JupiterLab platform offered by HPE Ezmeral and execute the only box.
+Note: it might be necessary to install the Java Virtual Machine to test locally the apihandler. In that case follow the instructions written into the notebook.
 
 ## Register the model
 
