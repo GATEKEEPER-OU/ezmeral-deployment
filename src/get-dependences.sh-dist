@@ -7,8 +7,17 @@
 cd $(dirname "$0")
 WORKING_DIR=$(pwd)
 
+# Set proxy
+PROXY_URL=http://web-proxy.seclab.local:8088
+export http_proxy=$PROXY_URL
+export https_proxy=$PROXY_URL
+
+# Download Jar dependence
 VERS="__JAR_VERS__"
 JAR_NAME="__JAR_NAME__"
 REMOTE_FILE="__MAVEN_REPOSITORY__/${JAR_NAME}-${VERS}-jar-with-dependencies.jar"
-
 curl -O --output-dir $WORKING_DIR $REMOTE_FILE
+
+# Unset proxy
+unset http_proxy
+unset https_proxy
