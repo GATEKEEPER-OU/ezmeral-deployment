@@ -114,6 +114,18 @@ sed -i'.bak' "s#__MODEL_DESC__#${model_desc}#" $tmp_file
 mv $tmp_file $WORKING_DIR/$run_filename
 
 ################################################################################
+# Generate INSTALL.md                                                          #
+################################################################################
+installmd_filename="INSTALL.md"
+tmp_file="$SRC_DIR/${installmd_filename}-tmp"
+cp "$SRC_DIR/${installmd_filename}-dist" $tmp_file
+sed -i'.bak' "s#__PROJECT_TAG__#${project_tag}#" $tmp_file
+sed -i'.bak' "s#__PROJECT_NAME__#${project_name}#" $tmp_file
+sed -i'.bak' "s#__MODEL_ID__#${model_id}#" $tmp_file
+sed -i'.bak' "s#__MODEL_DESC__#${model_desc}#" $tmp_file
+mv $tmp_file $WORKING_DIR/$installmd_filename
+
+################################################################################
 # Purge temporary file                                                         #
 ################################################################################
 rm ${SRC_DIR}/*.bak
