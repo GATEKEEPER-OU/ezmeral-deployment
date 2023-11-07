@@ -53,7 +53,7 @@
     "import os\n",
     "# ISSUE set the proxy here doesn't affect the run of the apihandler.py\n",
     "# I suspect that the proxy needs to be passed as parameter to the jar executeble.\n",
-    "PROXY_URL = 'http://web-proxy.seclab.local:8088'\n",
+    "PROXY_URL = 'web-proxy.seclab.local:8088'\n",
     "os.environ['http_proxy'] = PROXY_URL\n",
     "os.environ['https_proxy'] = PROXY_URL\n",
     "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"

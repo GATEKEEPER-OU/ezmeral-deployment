@@ -84,7 +84,7 @@
     "  }\n",
     "}\n",
     "\n",
-    "PROXY_URL = 'http://web-proxy.seclab.local:8088'\n",
+    "PROXY_URL = 'web-proxy.seclab.local:8088'\n",
     "os.environ['http_proxy'] = PROXY_URL\n",
     "os.environ['https_proxy'] = PROXY_URL\n",
     "\n",

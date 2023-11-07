@@ -23,8 +23,8 @@ $ git clone https://github.com/GATEKEEPER-OU/ezmeral-deployment.git <PROJECT_NAM
 If you encounter downloading problems, you might need to set the proxy running the line below. Then try to clone again.
 
 ```
-$ export http_proxy=http://web-proxy.seclab.local:8088; \
-  export https_proxy=http://web-proxy.seclab.local:8088
+$ export http_proxy=web-proxy.seclab.local:8088; \
+  export https_proxy=web-proxy.seclab.local:8088
 ```
 
 Generate project files of desired AI model running

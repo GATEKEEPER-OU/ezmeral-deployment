@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # Set proxy
-PROXY_URL=http://web-proxy.seclab.local:8088
+PROXY_URL=web-proxy.seclab.local:8088
 export http_proxy=$PROXY_URL
 export https_proxy=$PROXY_URL
 
