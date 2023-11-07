@@ -58,15 +58,7 @@ while :; do
 done
 
 ################################################################################
-# Generate get-jdk.sh                                                    #
-################################################################################
-jdk_filename="get-jdk.sh"
-tmp_file="$SRC_DIR/${jdk_filename}-tmp"
-cp "$SRC_DIR/${jdk_filename}-dist" $tmp_file
-mv $tmp_file $WORKING_DIR/$jdk_filename
-
-################################################################################
-# Generate get-dependences.sh                                                    #
+# Generate get-dependences.sh                                                  #
 ################################################################################
 dependences_filename="get-dependences.sh"
 tmp_file="$SRC_DIR/${dependences_filename}-tmp"
