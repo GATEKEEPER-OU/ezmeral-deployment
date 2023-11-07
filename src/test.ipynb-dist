@@ -26,14 +26,13 @@
     "user_home = os.path.expanduser('~')\n",
     "java_basedir = user_home + '/.local/share/jvm'\n",
     "\n",
+    "# Set Java path again, because it seems that the python kernel ignores\n",
+    "# system environment variables declared in .bash_profile\n",
     "jdirs_list = os.popen(f\"ls -DtU {java_basedir} | grep amazon-\").read().rstrip()\n",
     "java_folder = jdirs_list.split('\\n')[-1]\n",
     "java_home = java_basedir + '/' + java_folder\n",
-    "\n",
     "os.environ['JAVA_HOME'] = java_home\n",
     "os.environ['PATH'] = java_home + '/bin' + os.pathsep + os.environ['PATH']\n",
-    "# print(os.environ['JAVA_HOME']) # DEBUG\n",
-    "# print(os.environ['PATH']) # DEBUG\n",
     "\n",
     "!java -version"
    ]
@@ -51,10 +50,12 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# import os\n",
-    "# PROXY_URL = 'http://web-proxy.seclab.local:8088'\n",
-    "# os.environ['http_proxy'] = PROXY_URL\n",
-    "# os.environ['https_proxy'] = PROXY_URL\n",
+    "import os\n",
+    "# ISSUE set the proxy here doesn't affect the run of the apihandler.py\n",
+    "# I suspect that the proxy needs to be passed as parameter to the jar executeble.\n",
+    "PROXY_URL = 'http://web-proxy.seclab.local:8088'\n",
+    "os.environ['http_proxy'] = PROXY_URL\n",
+    "os.environ['https_proxy'] = PROXY_URL\n",
     "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
    ]
   }
