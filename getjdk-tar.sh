@@ -18,7 +18,7 @@ last_jdk=${jdirs[-1]}
 # echo $java_vers
 
 # Configure Java env variables
-BASHRC=~/.bash_login
+BASHRC=~/.bash_profile
 echo -e "export JAVA_HOME=$JAVA_BASE/$last_jdk" | tee -a $BASHRC
 echo -e "export PATH=\$JAVA_HOME/bin:\$PATH" | tee -a $BASHRC
 
