@@ -23,14 +23,17 @@
    "source": [
     "import os\n",
     "\n",
-    "JAVA_FOLDER = '' # Fill HERE\n",
-    "\n",
     "user_home = os.path.expanduser('~')\n",
     "java_basedir = user_home + '/.local/share/jvm'\n",
-    "java_home = java_basedir + '/' + JAVA_FOLDER\n",
+    "\n",
+    "jdirs_list = os.popen(f\"ls -DtU {java_basedir} | grep amazon-\").read().rstrip()\n",
+    "java_folder = jdirs_list.split('\\n')[-1]\n",
+    "java_home = java_basedir + '/' + java_folder\n",
     "\n",
     "os.environ['JAVA_HOME'] = java_home\n",
     "os.environ['PATH'] = java_home + '/bin' + os.pathsep + os.environ['PATH']\n",
+    "# print(os.environ['JAVA_HOME']) # DEBUG\n",
+    "# print(os.environ['PATH']) # DEBUG\n",
     "\n",
     "!java -version"
    ]
