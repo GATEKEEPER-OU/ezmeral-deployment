@@ -110,12 +110,11 @@ $ exit
 
 Open the `run` notebook:
 
-- Run Box #1 to activete the imports.
-- Run Box #2.
-  This will __fail__, but it will suggest the `jwt` required by the next step. So, collect the `--token` and copy&paste it into the next box as `jwt_token` value.
-- Box #3.
+- Run Box #1.  
+  This will __fail__, but it will suggest the `jwt` required by the next step. So, collect the `--token` and copy&paste it into the next box as `JWT` value.
+- Box #2.  
   Collect the `load_balancer_id` as explained previously, paste it as `LOAD_BALANCER_ID` value and run the box. In the response you will find useful informations:
  - public service `port`
  - the `auth_token` to append the headers of an HTTP request
-- Box #3.
+- Box #3.  
   In this step we will perform a HTTP request to the public gateway to test the api service. So, collect `port` and `auth_token` from the previous response, paste them in the relative variables, fill also the `post_body` parameters, then run the box. If everything went well, you will view the FHIR result in the box below.
