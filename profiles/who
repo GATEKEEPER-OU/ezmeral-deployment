@@ -4,6 +4,7 @@ export jar_vers="0.1.5"
 export jar_name="fuzzy-who"
 export maven_repository="http://gatekeeper.wilsley.xyz/maven/ai-models"
 
+export project_tag="who"
 export project_name="whoadherence" # avoid dashed
 export ez_namespace="development"
 export model_id="who-adherence-model"

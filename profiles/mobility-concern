@@ -4,6 +4,7 @@ export jar_vers="0.0.4"
 export jar_name="mobility-concern"
 export maven_repository="http://gatekeeper.wilsley.xyz/maven/ai-models"
 
+export project_tag="mc"
 export project_name="mobilityconcern" # avoid dashed
 export ez_namespace="development"
 export model_id="mobility-concern-model"

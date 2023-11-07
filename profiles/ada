@@ -4,6 +4,7 @@ export jar_vers="0.0.2"
 export jar_name="fuzzy-ada"
 export maven_repository="http://gatekeeper.wilsley.xyz/maven/ai-models"
 
+export project_tag="ada"
 export project_name="adaadherence" # avoid dashed
 export ez_namespace="development"
 export model_id="ada-adherence-model"
