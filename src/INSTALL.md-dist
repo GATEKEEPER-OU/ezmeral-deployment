@@ -124,10 +124,15 @@ Open the `run` notebook:
 
 ### Get pods
 ```
-kubectl get -n development pod -o wide | grep __PROJECT_TAG__
+kubectl get -n development pod -o | grep __PROJECT_TAG__
 ```
 
 ### Delete deployment
 ```
 kubectl delete kdcluster __MODEL_ID__
+```
+
+### Delete hang [terminating] state
+```
+kubectl delete pod --force <POD_NAME>
 ```
