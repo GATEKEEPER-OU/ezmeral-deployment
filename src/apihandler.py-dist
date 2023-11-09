@@ -44,7 +44,7 @@ def extractReportbyMarkers(text, markerx, markery):
 
 def main(argv):
   params = argv[1:]
-  cmd = ['java', '-jar', EXECUTABLE_JAR]
+  cmd = ['java', '-jar', EXECUTABLE_JAR, '--no-chart']
 
   status = -1
   with open('stdout.txt', 'w') as fpOut, open('stderr.txt', 'w') as fpErr:
