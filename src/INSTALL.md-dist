@@ -118,3 +118,16 @@ Open the `run` notebook:
  - the `auth_token` to append the headers of an HTTP request
 - Box #3.
   In this step we will perform a HTTP request to the public gateway to test the api service. So, collect `port` and `auth_token` from the previous response, paste them in the relative variables, fill also the `post_body` parameters, then run the box. If everything went well, you will view the FHIR result in the box below.
+
+
+## Useful commands
+
+### Get pods
+```
+kubectl get -n development pod -o wide | grep __PROJECT_TAG__
+```
+
+### Delete deployment
+```
+kubectl delete kdcluster __MODEL_ID__
+```
