@@ -69,7 +69,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "%run whoadherence_apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"proxy\": \"web-proxy.seclab.local:8088\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
+    "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"proxy\": \"web-proxy.seclab.local:8088\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
    ]
   }
  ],
