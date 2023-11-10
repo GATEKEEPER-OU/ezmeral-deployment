@@ -50,16 +50,26 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "import os\n",
     "import json\n",
     "\n",
-    "%run whoadherence_apihandler.py \\\n",
-    "  --endpoint \"http://hapi.wilsley.xyz\" \\\n",
-    "  --proxy \"http://web-proxy.seclab.local:8088\" \\\n",
-    "  --patient-identifier \"user1001@puglia.gatekeeper.com\" \\\n",
-    "  --start-date \"2022-10-01\" \\\n",
-    "  --end-date \"2022-10-31\" \\\n",
-    "  --no-chart"
+    "args = {\n",
+    "  \"endpoint\": \"hapi.wilsley.xyz\",\n",
+    "  \"proxy\": \"web-proxy.seclab.local:8088\",\n",
+    "  \"patient_identifier\": \"user1001@puglia.gatekeeper.com\",\n",
+    "  \"start_date\": \"2022-10-01\",\n",
+    "  \"end_date\": \"2022-10-31\",\n",
+    "}\n",
+    "\n",
+    "json.dumps(args)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%run whoadherence_apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"proxy\": \"web-proxy.seclab.local:8088\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
    ]
   }
  ],

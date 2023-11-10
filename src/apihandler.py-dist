@@ -3,6 +3,7 @@
 ## ########################################################################## ##
 
 import sys
+import json
 import subprocess
 
 #
@@ -30,36 +31,57 @@ MARKER='__MARKER__'
 # ############################################################################ #
 #
 
-def extractReportbyMarkers(text, markerx, markery):
+def extractReportbyMarkers(text, marker_start, marker_end):
   """
     Extract output report, which is embedded between two markers
   """
   report = ""
-  a = text.find(markerx)
+  a = text.find(marker_start)
   if a >= 0:
-    b = text.find(markery, a+len(markerx))
+    b = text.find(marker_end, a+len(marker_start))
     if b > 0:
-      report = text[a+len(markerx):b]
+      report = text[a+len(marker_start):b]
   return report
 
-def main(argv):
-  params = argv[1:]
-  cmd = ['java', '-jar', EXECUTABLE_JAR, '--no-chart']
+def mandatory_check(args, field_name):
+  msg = "'{}' param required"
+  if field_name not in args:
+    raise Exception(msg.format(field_name))
 
-  status = -1
-  with open('stdout.txt', 'w') as fpOut, open('stderr.txt', 'w') as fpErr:
-    status = subprocess.call(cmd + params, stdout=fpOut, stderr=fpErr)
-
-  if status == 0:
-    with open('stdout.txt') as fpOut:
-      output = fpOut.read()
-      report = extractReportbyMarkers(output, f"<{MARKER}>", f"</{MARKER}>")
-      print(report)
-  else:
-    with open('stderr.txt') as fpErr:
-      the_error = fpErr.read()
-      print(the_error)
-    raise Exception("Internal error")
+def input_filter(args):
+  mandatory_check(args, 'endpoint')
+  mandatory_check(args, 'patient_identifier')
+  mandatory_check(args, 'start_date')
+  mandatory_check(args, 'end_date')
 
 if __name__ == "__main__":
-  main(sys.argv)
+  post_body = sys.argv[1]
+  body_content = json.loads(post_body)
+  input_filter(body_content)
+
+  args = [
+    '--endpoint', body_content['endpoint'],
+    '--proxy', body_content['proxy'],
+    '--patient-identifier', body_content['patient_identifier'],
+    '--start-date', body_content['start_date'],
+    '--end-date', body_content['start_date'],
+    '--no-chart'
+  ]
+  cmd = ['java', '-jar', EXECUTABLE_JAR]
+  cmd_with_args = cmd + args
+  # print(cmd_with_args) # DEBUG
+
+  with open('stdout.txt', 'w') as fpOut, open('stderr.txt', 'w') as fpErr:
+    status = subprocess.call(cmd_with_args, stdout=fpOut, stderr=fpErr)
+
+    if status == 0:
+      with open('stdout.txt') as fpOut:
+        output = fpOut.read()
+        report = extractReportbyMarkers(output, f"<{MARKER}>", f"</{MARKER}>")
+        print(report)
+
+    else:
+      with open('stderr.txt') as fpErr:
+        the_error = fpErr.read()
+        print(the_error)
+      raise Exception("Internal error")
