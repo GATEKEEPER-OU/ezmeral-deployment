@@ -85,21 +85,21 @@ It may be required restart the terminal. (?)
 
 ### Install JDK on the pod
 
-Before execute the JDK remote installation, you must collect the `restserver` pod name as explained previously. It is something like 'who-adherence-model-restserver-XXXXX-0'.
-Then run
+Before execute the JDK remote installation, you must collect the `restserver` and `loadbalancer` pod names as explained previously. It is something like 'who-adherence-model-restserver-XXXXX-0', or 'who-adherence-model-loadbalancer-YYYYY-0'.
+Then proceed with the installation running the next commands for each pod.
 
 ```
-kubectl -n development exec -it who-adherence-model-restserver-XXXXX-0 -- bash
+kubectl -n development exec -it <POD_NAME> -- bash
 ```
 
 In case of '<span style="color:red">`Unable to connect to the server: Forbidden`</span>' error, you will need to disable the proxy using `./unset-proxy.sh` command.
 
-Next run the following commands inside the pod terminal:
+Once open a terminal onto a pod, run
 
 ```
 $ export http_proxy=web-proxy.seclab.local:8088; \
   export https_proxy=web-proxy.seclab.local:8088
-$ yum -y update
+$ yum -y update # Optional
 $ rpm --import https://yum.corretto.aws/corretto.key
 $ curl -L -o /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.repo
 $ yum install -y java-17-amazon-corretto-devel
