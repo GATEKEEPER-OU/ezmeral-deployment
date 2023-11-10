@@ -122,17 +122,25 @@ Open the `run` notebook:
 
 ## Useful commands
 
+### Establish a connection with the cluster
+
+Run the command below and follow the wizard prompt.
+
+```
+$ kubectl hpecp refresh hpe-ere-gw-lb.seclab.local
+```
+ 
 ### Get pods
 ```
-kubectl get -n development pod -o | grep __PROJECT_TAG__
+$ kubectl get -n development pod -o | grep __PROJECT_TAG__
 ```
 
 ### Delete deployment
 ```
-kubectl delete kdcluster __MODEL_ID__
+$ kubectl delete kdcluster __MODEL_ID__
 ```
 
 ### Delete hang [terminating] state
 ```
-kubectl delete pod --force <POD_NAME>
+$ kubectl delete pod --force <POD_NAME>
 ```
