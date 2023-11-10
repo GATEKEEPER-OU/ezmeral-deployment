@@ -64,7 +64,7 @@ if __name__ == "__main__":
     '--proxy', body_content['proxy'],
     '--patient-identifier', body_content['patient_identifier'],
     '--start-date', body_content['start_date'],
-    '--end-date', body_content['start_date'],
+    '--end-date', body_content['end_date'],
     '--no-chart'
   ]
   cmd = ['java', '-jar', EXECUTABLE_JAR]
