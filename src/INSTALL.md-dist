@@ -129,10 +129,10 @@ Run the command below and follow the wizard prompt.
 ```
 $ kubectl hpecp refresh hpe-ere-gw-lb.seclab.local
 ```
- 
+
 ### Get pods
 ```
-$ kubectl get -n development pod -o | grep __PROJECT_TAG__
+$ kubectl get -n development pod | grep __PROJECT_TAG__
 ```
 
 ### Delete deployment
