@@ -61,12 +61,15 @@ if __name__ == "__main__":
 
   args = [
     '--endpoint', body_content['endpoint'],
-    '--proxy', body_content['proxy'],
+#     '--proxy', body_content['proxy'],
     '--patient-identifier', body_content['patient_identifier'],
     '--start-date', body_content['start_date'],
     '--end-date', body_content['end_date'],
     '--no-chart'
   ]
+  if 'proxy' in body_content:
+    args += ['--proxy', body_content['proxy']]
+
   cmd = ['java', '-jar', EXECUTABLE_JAR]
   cmd_with_args = cmd + args
   # print(cmd_with_args) # DEBUG
