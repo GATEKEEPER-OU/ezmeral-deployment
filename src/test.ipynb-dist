@@ -41,7 +41,14 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### Run test"
+    "### Run tests"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Direct request"
    ]
   },
   {
@@ -53,9 +60,8 @@
     "import json\n",
     "\n",
     "args = {\n",
-    "  \"endpoint\": \"hapi.wilsley.xyz\",\n",
-    "  \"proxy\": \"web-proxy.seclab.local:8088\",\n",
-    "  \"patient_identifier\": \"user1001@puglia.gatekeeper.com\",\n",
+    "  \"endpoint\": \"gk-fhir-ai-server-gatekeeper-dev.apps.okd.seclab.local/gk-fhir-server\",\n",
+    "  \"patient_identifier\": \"c.allocca@puglia.gatekeeper.com\",\n",
     "  \"start_date\": \"2022-10-01\",\n",
     "  \"end_date\": \"2022-10-31\",\n",
     "}\n",
@@ -69,7 +75,42 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"proxy\": \"web-proxy.seclab.local:8088\", \"patient_identifier\": \"user1001@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
+    "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"gk-fhir-ai-server-gatekeeper-dev.apps.okd.seclab.local/gk-fhir-server\", \"patient_identifier\": \"c.allocca@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "Request over proxy"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import json\n",
+    "\n",
+    "args = {\n",
+    "  \"endpoint\": \"hapi.wilsley.xyz\",\n",
+    "  \"proxy\": \"web-proxy.seclab.local:8088\",\n",
+    "  \"patient_identifier\": \"c.allocca@puglia.gatekeeper.com\",\n",
+    "  \"start_date\": \"2022-10-01\",\n",
+    "  \"end_date\": \"2022-10-31\",\n",
+    "}\n",
+    "\n",
+    "json.dumps(args)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "%run __PROJECT_NAME___apihandler.py '{\"endpoint\": \"hapi.wilsley.xyz\", \"proxy\": \"web-proxy.seclab.local:8088\", \"patient_identifier\": \"c.allocca@puglia.gatekeeper.com\", \"start_date\": \"2022-10-01\", \"end_date\": \"2022-10-31\"}'"
    ]
   }
  ],
@@ -89,7 +130,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.8.5"
+   "version": "3.11.4"
   }
  },
  "nbformat": 4,
