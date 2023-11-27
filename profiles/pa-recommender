@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+export jar_vers="0.0.1"
+export jar_name="pa-recommender"
+export maven_repository="http://gatekeeper.wilsley.xyz/maven/ai-models"
+
+export project_tag="pa"
+export project_name="parecommender" # avoid dashed
+export ez_namespace="development"
+export model_id="pa-recommender"
+export model_desc="PA Recommender Model"
+export deploym_desc="PA Recommender Model Cluster"
+export marker="PARecommenderBundle"
